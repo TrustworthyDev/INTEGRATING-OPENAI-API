@@ -4,10 +4,10 @@ import Head from 'next/head';
 import axios from 'axios';
 
 
-export default function Home() {
+const Home = ({ initialChatContent }) => {
     
     const [description, setDescription] = useState('');
-    const [chatContent, setChatContent] = useState('');
+    const [chatContent, setChatContent] = useState(initialChatContent);
 
     const onSend = async () => {
 
@@ -65,3 +65,16 @@ export default function Home() {
         </div>
     )
 }
+
+export async function getServerSideProps() {
+
+    const initialChatContent = '';
+
+    return {
+        props: {
+            initialChatContent
+        }
+    }
+}
+
+export default Home;
